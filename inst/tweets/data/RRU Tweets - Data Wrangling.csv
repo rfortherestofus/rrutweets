@@ -1,0 +1,16 @@
+tweet_content,tweet_media
+"Here's a quick thread on what's covered in the data wrangling and analysis section of Going Deeper with R. 
+
+https://rforthe.rest/deeper",images/going-deeper-data-wrangling.gif
+"One of the cool things about R is you can download data directly from R using the download.file() function. 
+
+https://www.math.ucla.edu/~anderson/rw1001/library/base/html/download.file.html",
+"Excel. It's ubiqituous. Learn how to import data using the read_excel function from the {readxl} package. 
+
+https://readxl.tidyverse.org/reference/read_excel.html",
+"Once you have your data imported, the first step is to tidy it. Learn about the principles of tidy data in this article.
+
+https://tidyr.tidyverse.org/articles/tidy-data.html",
+"You often need to reshape your data. The pivot_longer() function is often really helpful here. 
+
+https://tidyr.tidyverse.org/articles/pivot.html",
