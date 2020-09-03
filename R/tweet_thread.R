@@ -16,38 +16,36 @@ tweet_thread <- function(tweet_content, tweet_media, tweet_number) {
     dplyr::slice(1) %>%
     dplyr::pull(status_id)
 
-  if (tweet_number == 1) {
+  if (tweet_number == 1 & is.na(tweet_media)) {
 
-    # if (is.na(tweet_media)) {
-
-      rtweet::post_tweet(status = tweet_content)
-
-    # } else {
-
-      # rtweet::post_tweet(status = tweet_content,
-      #                    media = tweet_media)
-
-    # }
-
-  } else {
-
-    # if (is.na(tweet_media)) {
-
-      rtweet::post_tweet(status = tweet_content,
-                         in_reply_to_status_id = latest_tweet_id)
-
-    # } else {
-
-      # rtweet::post_tweet(status = tweet_content,
-      #                    media = tweet_media,
-      #                    in_reply_to_status_id = latest_tweet_id)
-    # }
+    rtweet::post_tweet(status = tweet_content)
 
   }
+
+  if (tweet_number == 1 & !is.na(tweet_media)) {
+
+    rtweet::post_tweet(status = tweet_content,
+                       media = tweet_media)
+
+  }
+
+  if (tweet_number != 1 & is.na(tweet_media)) {
+
+    rtweet::post_tweet(status = tweet_content,
+                       in_reply_to_status_id = latest_tweet_id)
+
+  }
+
+  if (tweet_number != 1 & !is.na(tweet_media)) {
+
+    rtweet::post_tweet(status = tweet_content,
+                       in_reply_to_status_id = latest_tweet_id,
+                       media = tweet_media)
+
+  }
+
+
 
   Sys.sleep(30)
 
 }
-
-
-
