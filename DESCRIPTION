@@ -19,4 +19,5 @@ Imports:
     magrittr,
     magick,
     rtweet,
-    dplyr
+    dplyr,
+    googlesheets4

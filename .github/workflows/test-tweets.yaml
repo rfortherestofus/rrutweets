@@ -1,0 +1,21 @@
+on:
+  push:
+    branches: master
+
+jobs:
+  test-tweets:
+    runs-on: ubuntu-18.04
+    container: rocker/tidyverse
+    env:
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install rtweet
+        run: |
+          remotes::install_cran(c("rtweet"))
+        shell: Rscript {0}
+
+      - name: Run script
+        run: |-
+          Rscript inst/test-tweets.R
+
