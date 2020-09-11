@@ -6,7 +6,6 @@ jobs:
   test-tweets:
     runs-on: ubuntu-18.04
     container: rocker/tidyverse
-    env:
     steps:
       - uses: actions/checkout@v2
 
