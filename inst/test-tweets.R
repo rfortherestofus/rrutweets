@@ -19,4 +19,16 @@
 
 
 library(rtweet)
-post_tweet(status = "This is a teset tweet")
+
+token <-
+  create_token(
+    app = "rrutweets",
+    consumer_key = Sys.getenv("TW_API_KEY"),
+    consumer_secret = Sys.getenv("TW_SECRET_KEY"),
+    access_token = Sys.getenv("TW_ACCESS_TOKEN"),
+    access_secret = Sys.getenv("TW_SECRET_TOKEN"),
+    set_renv = FALSE
+  )
+
+post_tweet(status = "This is a new test tweet",
+           token = token)

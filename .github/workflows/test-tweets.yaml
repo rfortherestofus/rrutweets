@@ -6,6 +6,12 @@ jobs:
   test-tweets:
     runs-on: ubuntu-18.04
     container: rocker/tidyverse
+    env:
+      TW_API_KEY: ${{ secrets.TW_API_KEY }}
+      TW_SECRET_KEY: ${{ secrets.TW_SECRET_KEY }}
+      TW_ACCESS_TOKEN: ${{ secrets.TW_ACCESS_TOKEN }}
+      TW_SECRET_TOKEN: ${{ secrets.TW_SECRET_TOKEN }}
+
     steps:
       - uses: actions/checkout@v2
 
