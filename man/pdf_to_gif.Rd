@@ -4,7 +4,7 @@
 \alias{pdf_to_gif}
 \title{Convert PDF to Animated GIF}
 \usage{
-pdf_to_gif(pdf_location, gif_location, density = 50)
+pdf_to_gif(pdf_location, gif_file_path, gif_file_name, density = 50)
 }
 \arguments{
 \item{pdf_location}{}
