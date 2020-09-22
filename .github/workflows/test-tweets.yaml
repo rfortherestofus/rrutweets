@@ -17,7 +17,7 @@ jobs:
 
       - name: Install rtweet
         run: |
-          remotes::install_cran(c("rtweet"))
+          remotes::install_cran(c("rtweet", "googlesheets4"))
         shell: Rscript {0}
 
       - name: Run script
