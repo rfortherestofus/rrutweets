@@ -1,7 +1,6 @@
 library(tidyverse)
 library(googlesheets4)
 library(rtweet)
-library(rrutweets)
 
 
 gs4_deauth()
