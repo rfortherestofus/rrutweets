@@ -1,18 +1,15 @@
 
 # Load Packages -----------------------------------------------------------
 
-
 library(tidyverse)
 library(googlesheets4)
 library(rtweet)
 library(lubridate)
 
-
-
 # Authentication ----------------------------------------------------------
 
 gs4_auth(email = "david@rfortherestofus.com",
-         path = gargle:::secret_read("inst/secret/rrutweets-sheets.json"))
+         path = "inst/secret/rrutweets-sheets.json")
 
 twitter_token <-
   create_token(
@@ -61,8 +58,5 @@ get_last_tweet_url <- function() {
 Sys.sleep(10)
 
 tweets %>%
-  mutate(tweet_url = case_when(
-    (tweet_text == tweet) & (date_posted > now() %>% floor_date(unit = "hour")) ~ get_last_tweet_url()
-  )) %>%
   write_sheet(rru_tweets_sheet,
               sheet = "Test Tweets")
