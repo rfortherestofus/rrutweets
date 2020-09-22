@@ -3,7 +3,8 @@ library(googlesheets4)
 library(rtweet)
 library(rrutweets)
 
-googlesheets4::gs4_deauth()
+
+gs4_deauth()
 
 rru_tweets_sheet <- "https://docs.google.com/spreadsheets/d/10ec07SNOSOmpzcSVgdcfm4Mg-3N_Y7gZVvv9oycM-og/edit?usp=sharing"
 
@@ -20,8 +21,7 @@ token <-
     consumer_key = Sys.getenv("TWITTER_API_KEY"),
     consumer_secret = Sys.getenv("TWITTER_SECRET_KEY"),
     access_token = Sys.getenv("TWITTER_ACCESS_TOKEN"),
-    access_secret = Sys.getenv("TWITTER_SECRET_TOKEN"),
-    set_renv = FALSE
+    access_secret = Sys.getenv("TWITTER_SECRET_TOKEN")
   )
 
 post_tweet(status = "This is a new test tweet",
