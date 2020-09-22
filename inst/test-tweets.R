@@ -9,7 +9,7 @@ library(lubridate)
 # Authentication ----------------------------------------------------------
 
 gs4_auth(email = "david@rfortherestofus.com",
-         path = "inst/secret/rrutweets-sheets.json")
+         path = Sys.getenv("GOOGLE_SHEETS_JSON"))
 
 twitter_token <-
   create_token(

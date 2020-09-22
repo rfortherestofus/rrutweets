@@ -21,7 +21,6 @@ jobs:
         run: |
           remotes::install_cran("rtweet")
           remotes::install_cran("gargle")
-          remotes::install_cran("sodium")
           remotes::install_github("tidyverse/googlesheets4")
         shell: Rscript {0}
 
