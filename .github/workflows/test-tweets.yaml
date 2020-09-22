@@ -18,7 +18,9 @@ jobs:
 
       - name: Install packages
         run: |
-          remotes::install_cran(c("rtweet", "googlesheets4"))
+          remotes::install_cran("rtweet")
+          remotes::install_cran("gargle")
+          remotes::install_cran("googlesheets4")
         shell: Rscript {0}
 
       - name: Run script

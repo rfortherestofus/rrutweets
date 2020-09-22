@@ -1,20 +1,19 @@
+
+# Load Packages -----------------------------------------------------------
+
+
 library(tidyverse)
 library(googlesheets4)
 library(rtweet)
+library(lubridate)
 
 
-gs4_deauth()
+# Authentication ----------------------------------------------------------
 
-rru_tweets_sheet <- "https://docs.google.com/spreadsheets/d/10ec07SNOSOmpzcSVgdcfm4Mg-3N_Y7gZVvv9oycM-og/edit?usp=sharing"
+gs4_auth(email = "david@rfortherestofus.com",
+         path = gargle:::secret_read("inst/secret/rrutweets-sheets.json"))
 
-rru_test_tweets <- read_sheet(rru_tweets_sheet,
-                              sheet = "Test Tweets")
-
-tweet <- rru_test_tweets %>%
-  slice(1) %>%
-  pull(tweet_text)
-
-token <-
+twitter_token <-
   create_token(
     app = "rrutweets",
     consumer_key = Sys.getenv("TWITTER_API_KEY"),
@@ -23,5 +22,46 @@ token <-
     access_secret = Sys.getenv("TWITTER_SECRET_TOKEN")
   )
 
-post_tweet(status = "This is a new test tweet",
-           token = token)
+# Get Tweets --------------------------------------------------------------
+
+rru_tweets_sheet <- "https://docs.google.com/spreadsheets/d/10ec07SNOSOmpzcSVgdcfm4Mg-3N_Y7gZVvv9oycM-og/edit?usp=sharing"
+
+tweets <- read_sheet(rru_tweets_sheet,
+                     sheet = "Test Tweets") %>%
+  mutate(tweet_length = str_length(tweet_text)) %>%
+  filter(tweet_length < 280) %>%
+  filter(is.na(date_posted)) %>%
+  mutate(n = row_number()) %>%
+  mutate(date_posted = case_when(
+    n == 1 ~ as.character(now())
+  ))
+
+tweet <- tweets %>%
+  filter(!is.na(date_posted)) %>%
+  pull(tweet_text)
+
+# Post Tweet --------------------------------------------------------------
+
+post_tweet(status = tweet,
+           token = twitter_token)
+
+# Put Tweets Back on Google Sheet -----------------------------------------
+
+
+get_last_tweet_url <- function() {
+  rtweet::search_tweets(q = "rfortherest",
+                        include_rts = FALSE,
+                        token = twitter_token) %>%
+    dplyr::filter(screen_name == "rfortherest") %>%
+    dplyr::slice(1) %>%
+    dplyr::pull(status_url)
+}
+
+Sys.sleep(10)
+
+tweets %>%
+  mutate(tweet_url = case_when(
+    (tweet_text == tweet) & (date_posted > now() %>% floor_date(unit = "hour")) ~ get_last_tweet_url()
+  )) %>%
+  write_sheet(rru_tweets_sheet,
+              sheet = "Test Tweets")
