@@ -23,7 +23,7 @@ jobs:
           remotes::install_cran("gargle")
           remotes::install_cran("sodium")
           remotes::install_github("tidyverse/googlesheets4")
-          remotes::install_github("tidyverse/rrutweets")
+          remotes::install_github("rfortherestofus/rrutweets")
         shell: Rscript {0}
 
       - name: Run script
