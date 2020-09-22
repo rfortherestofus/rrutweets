@@ -6,9 +6,10 @@ library(googlesheets4)
 library(rtweet)
 library(lubridate)
 
+
 # Authentication ----------------------------------------------------------
 
-gs4_auth(email = "david@rfortherestofus.com",
+gs4_auth(email = "dgkeyes@gmail.com",
          path = gargle:::secret_read("rrutweets", "rrutweets-sheets.json"))
 
 
