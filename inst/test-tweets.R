@@ -8,6 +8,7 @@ library(rtweet)
 library(lubridate)
 
 
+
 # Authentication ----------------------------------------------------------
 
 gs4_auth(email = "david@rfortherestofus.com",
@@ -33,7 +34,7 @@ tweets <- read_sheet(rru_tweets_sheet,
   filter(is.na(date_posted)) %>%
   mutate(n = row_number()) %>%
   mutate(date_posted = case_when(
-    n == 1 ~ as.character(now())
+    n == 1 ~ now()
   ))
 
 tweet <- tweets %>%
