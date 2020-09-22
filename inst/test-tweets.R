@@ -11,6 +11,7 @@ library(lubridate)
 gs4_auth(email = "david@rfortherestofus.com",
          path = gargle:::secret_read("rrutweets", "rrutweets-sheets.json"))
 
+
 twitter_token <-
   create_token(
     app = "rrutweets",
