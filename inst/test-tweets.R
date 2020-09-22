@@ -3,7 +3,7 @@ library(googlesheets4)
 library(rtweet)
 library(rrutweets)
 
-auth_googlesheets()
+googlesheets4::gs4_deauth()
 
 rru_tweets_sheet <- "https://docs.google.com/spreadsheets/d/10ec07SNOSOmpzcSVgdcfm4Mg-3N_Y7gZVvv9oycM-og/edit?usp=sharing"
 
