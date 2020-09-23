@@ -28,7 +28,7 @@ twitter_token <-
 
 # Get Tweets --------------------------------------------------------------
 
-rru_tweets_sheet <- "https://docs.google.com/spreadsheets/d/10ec07SNOSOmpzcSVgdcfm4Mg-3N_Y7gZVvv9oycM-og/edit"
+rru_tweets_sheet <- Sys.getenv("SHEET_PATH")
 
 tweets <- read_sheet(rru_tweets_sheet,
                      sheet = "Test Tweets") %>%
