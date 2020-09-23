@@ -25,7 +25,7 @@ jobs:
       - name: Decrypt large secret
         run: |
           gpg --quiet --batch --yes --decrypt --passphrase="$ENCYRPTION_PASSPHRASE" \
-          --output ./secret/rrutweets-sheet.json ./secret/rrutweets-sheet.json.gpg
+          --output ./rrutweets-sheet.json ./rrutweets-sheet.json.gpg
         env:
           ENCYRPTION_PASSPHRASE: ${{ secrets.ENCYRPTION_PASSPHRASE }}
 

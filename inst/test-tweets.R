@@ -9,11 +9,11 @@ library(lubridate)
 
 # Decryption --------------------------------------------------------------
 
-
+file.exists("rrutweets-sheet.json")
 
 # Authentication ----------------------------------------------------------
 
-googlesheets4::gs4_auth(path = "secret/rrutweets-sheet.json")
+googlesheets4::gs4_auth(path = "rrutweets-sheet.json")
 
 twitter_token <-
   create_token(
