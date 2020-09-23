@@ -7,10 +7,14 @@ library(rtweet)
 library(lubridate)
 
 
+# Decryption --------------------------------------------------------------
+
+
+
 # Authentication ----------------------------------------------------------
 
-gs4_auth(email = "dgkeyes@gmail.com",
-         path = gargle:::secret_read("rrutweets", "rrutweets-sheets.json"))
+googlesheets4::gs4_auth(email = Sys.getenv("GOOGLE_MAIL"),
+                        path = "rrutweets-sheets.json")
 
 
 twitter_token <-
@@ -24,7 +28,7 @@ twitter_token <-
 
 # Get Tweets --------------------------------------------------------------
 
-rru_tweets_sheet <- "https://docs.google.com/spreadsheets/d/10ec07SNOSOmpzcSVgdcfm4Mg-3N_Y7gZVvv9oycM-og/edit?usp=sharing"
+rru_tweets_sheet <- "https://docs.google.com/spreadsheets/d/10ec07SNOSOmpzcSVgdcfm4Mg-3N_Y7gZVvv9oycM-og/edit"
 
 tweets <- read_sheet(rru_tweets_sheet,
                      sheet = "Test Tweets") %>%
