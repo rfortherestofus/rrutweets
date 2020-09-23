@@ -15,7 +15,7 @@ library(lubridate)
 
 print(paste0("Decryption state : ", file.exists("rrutweets-sheet.json")))
 
-googlesheets4::gs4_auth(path = "rrutweets-sheet.json", use_oob = TRUE)
+googlesheets4::gs4_auth_configure(path = "rrutweets-sheet.json")
 
 twitter_token <-
   create_token(
