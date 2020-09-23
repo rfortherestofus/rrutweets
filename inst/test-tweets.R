@@ -7,7 +7,6 @@ library(googlesheets4)
 library(rtweet)
 library(lubridate)
 
-
 # Authentication ----------------------------------------------------------
 
 # print(paste0("Decryption state : ", file.exists("rrutweets-sheet.json")))
