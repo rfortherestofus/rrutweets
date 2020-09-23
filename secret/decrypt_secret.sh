@@ -1,2 +1,2 @@
 gpg --quiet --batch --yes --decrypt --passphrase="ENCYRPTION_PASSPHRASE" \
---output rrutweets-sheet.json rrutweets-sheet.json.gpg
+--output ./secret/rrutweets-sheet.json ./secret/rrutweets-sheet.json.gpg

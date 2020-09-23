@@ -28,7 +28,6 @@ jobs:
         env:
           ENCYRPTION_PASSPHRASE: ${{ secrets.ENCYRPTION_PASSPHRASE }}
 
-
       - name: Install packages
         run: |
           remotes::install_cran("rtweet")
