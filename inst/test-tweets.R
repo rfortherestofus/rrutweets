@@ -1,4 +1,5 @@
 
+
 # Load Packages -----------------------------------------------------------
 
 library(tidyverse)
@@ -7,14 +8,11 @@ library(rtweet)
 library(lubridate)
 
 
-# Decryption --------------------------------------------------------------
-
-
-
 # Authentication ----------------------------------------------------------
 
-googlesheets4::gs4_auth(path = "secret/rrutweets-sheets.json")
+# print(paste0("Decryption state : ", file.exists("rrutweets-sheet.json")))
 
+googlesheets4::gs4_auth(email = Sys.getenv("GOOGLE_MAIL"), path = "rrutweets-sheet.json")
 
 twitter_token <-
   create_token(
@@ -35,9 +33,7 @@ tweets <- read_sheet(rru_tweets_sheet,
   filter(tweet_length < 280) %>%
   filter(is.na(date_posted)) %>%
   mutate(n = row_number()) %>%
-  mutate(date_posted = case_when(
-    n == 1 ~ now()
-  ))
+  mutate(date_posted = case_when(n == 1 ~ now()))
 
 tweet <- tweets %>%
   filter(!is.na(date_posted)) %>%
