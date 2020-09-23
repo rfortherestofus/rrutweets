@@ -13,8 +13,7 @@ library(lubridate)
 
 # Authentication ----------------------------------------------------------
 
-googlesheets4::gs4_auth(email = Sys.getenv("GOOGLE_MAIL"),
-                        path = "secret/rrutweets-sheets.json")
+googlesheets4::gs4_auth(path = "secret/rrutweets-sheets.json")
 
 
 twitter_token <-
