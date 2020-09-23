@@ -3,4 +3,5 @@
 ^LICENSE\.md$
 ^\.github$
 ^\.secrets$
+^\.secret$
 rrutweets-sheets.json.gpg
