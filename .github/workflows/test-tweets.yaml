@@ -24,7 +24,9 @@ jobs:
         run: apt-get install -y gnupg2
 
       - name: Decrypt large secret
-        run: ./secret/decrypt_secret.sh
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="$ENCYRPTION_PASSPHRASE" \
+          --output ./secret/rrutweets-sheet.json ./secret/rrutweets-sheet.json.gpg
         env:
           ENCYRPTION_PASSPHRASE: ${{ secrets.ENCYRPTION_PASSPHRASE }}
 
