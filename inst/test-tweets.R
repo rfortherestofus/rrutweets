@@ -13,8 +13,7 @@ library(lubridate)
 
 # Authentication ----------------------------------------------------------
 
-googlesheets4::gs4_auth(path = "secret/rrutweets-sheets.json")
-
+googlesheets4::gs4_auth(path = "secret/rrutweets-sheet.json")
 
 twitter_token <-
   create_token(
