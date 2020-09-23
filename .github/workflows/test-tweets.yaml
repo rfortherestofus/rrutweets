@@ -5,7 +5,7 @@ on:
 jobs:
   test-tweets:
     runs-on: ubuntu-18.04
-    container: rocker/tidyverse
+    container: rocker/verse:3.6.3
     env:
       TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
       TWITTER_SECRET_KEY: ${{ secrets.TWITTER_SECRET_KEY }}
