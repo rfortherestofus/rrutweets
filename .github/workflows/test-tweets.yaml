@@ -24,7 +24,7 @@ jobs:
         run: apt-get install -y gnupg2
 
       - name: Decrypt large secret
-        run: decrypt_secret.sh
+        run: ./decrypt_secret.sh
         env:
           ENCYRPTION_PASSPHRASE: ${{ secrets.ENCYRPTION_PASSPHRASE }}
 
