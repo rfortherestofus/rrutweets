@@ -9,9 +9,20 @@ library(lubridate)
 
 # Authentication ----------------------------------------------------------
 
-# print(paste0("Decryption state : ", file.exists("rrutweets-sheet.json")))
+if (rlang::is_interactive() == TRUE) {
 
-googlesheets4::gs4_auth(email = Sys.getenv("GOOGLE_MAIL"), path = "rrutweets-sheet.json")
+gs4_auth(
+  email = "david@rfortherestofus.com",
+  path = "/Users/davidkeyes/.R/gargle/r-for-the-rest-of-us-misc-c3cd7d281458.json",
+  scopes = "https://www.googleapis.com/auth/spreadsheets",
+  cache = gargle::gargle_oauth_cache(),
+  use_oob = gargle::gargle_oob_default(),
+  token = NULL
+)
+
+} else {
+  googlesheets4::gs4_auth(email = Sys.getenv("GOOGLE_MAIL"), path = "rrutweets-sheet.json")
+}
 
 twitter_token <-
   create_token(
@@ -45,8 +56,10 @@ post_tweet(status = tweet,
 
 # Put Tweets Back on Google Sheet -----------------------------------------
 
-
 get_last_tweet_url <- function() {
+
+  Sys.sleep(10)
+
   rtweet::search_tweets(q = "rfortherest",
                         include_rts = FALSE,
                         token = twitter_token) %>%
@@ -54,8 +67,6 @@ get_last_tweet_url <- function() {
     dplyr::slice(1) %>%
     dplyr::pull(status_url)
 }
-
-Sys.sleep(10)
 
 tweets %>%
   write_sheet(rru_tweets_sheet,
