@@ -1,41 +1,41 @@
-on:
-  push:
-    branches: master
-
-jobs:
-  test-tweets:
-    runs-on: ubuntu-18.04
-    container: rocker/tidyverse:3.6.3
-    env:
-      TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
-      TWITTER_SECRET_KEY: ${{ secrets.TWITTER_SECRET_KEY }}
-      TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-      TWITTER_SECRET_TOKEN: ${{ secrets.TWITTER_SECRET_TOKEN }}
-      SHEET_PATH: ${{ secrets.SHEET_PATH }}
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name : Update
-        run: apt-get update
-
-      - name: Install gpg
-        run: apt-get install -y gnupg2
-
-      - name: Decrypt large secret
-        run: |
-          gpg --quiet --batch --yes --decrypt --passphrase="$ENCYRPTION_PASSPHRASE" --output ./rrutweets-sheet.json ./rrutweets-sheet.json.gpg
-        env:
-          ENCYRPTION_PASSPHRASE: ${{ secrets.ENCYRPTION_PASSPHRASE }}
-
-      - name: Install packages
-        run: |
-          remotes::install_cran("rtweet")
-          remotes::install_cran("jsonlite")
-          remotes::install_github("tidyverse/googlesheets4")
-        shell: Rscript {0}
-
-      - name: Run script
-        run: |-
-          Rscript inst/test-tweets.R
-
+# on:
+#   push:
+#     branches: master
+#
+# jobs:
+#   test-tweets:
+#     runs-on: ubuntu-18.04
+#     container: rocker/tidyverse:3.6.3
+#     env:
+#       TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+#       TWITTER_SECRET_KEY: ${{ secrets.TWITTER_SECRET_KEY }}
+#       TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+#       TWITTER_SECRET_TOKEN: ${{ secrets.TWITTER_SECRET_TOKEN }}
+#       SHEET_PATH: ${{ secrets.SHEET_PATH }}
+#
+#     steps:
+#       - uses: actions/checkout@v2
+#
+#       - name : Update
+#         run: apt-get update
+#
+#       - name: Install gpg
+#         run: apt-get install -y gnupg2
+#
+#       - name: Decrypt large secret
+#         run: |
+#           gpg --quiet --batch --yes --decrypt --passphrase="$ENCYRPTION_PASSPHRASE" --output ./rrutweets-sheet.json ./rrutweets-sheet.json.gpg
+#         env:
+#           ENCYRPTION_PASSPHRASE: ${{ secrets.ENCYRPTION_PASSPHRASE }}
+#
+#       - name: Install packages
+#         run: |
+#           remotes::install_cran("rtweet")
+#           remotes::install_cran("jsonlite")
+#           remotes::install_github("tidyverse/googlesheets4")
+#         shell: Rscript {0}
+#
+#       - name: Run script
+#         run: |-
+#           Rscript inst/test-tweets.R
+#

@@ -3,9 +3,9 @@ on:
     branches: master
 
 jobs:
-  test-tweets:
+  promotional-tweets:
     runs-on: ubuntu-18.04
-    container: rocker/tidyverse:3.6.3
+    container: rocker/tidyverse
     env:
       TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
       TWITTER_SECRET_KEY: ${{ secrets.TWITTER_SECRET_KEY }}
