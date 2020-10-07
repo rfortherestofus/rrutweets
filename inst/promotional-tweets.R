@@ -55,7 +55,7 @@ tweet <- "Know how to do t-tests in SPSS but still struggling with them in #rsta
 
                       Pre-launch pricing before September 30.\n\n
 
-                      https://rfortherestofus.com/courses/inferential-statistics/")
+                      https://rfortherestofus.com/courses/inferential-statistics/"
 
 tweet <- "Test tweet"
 
