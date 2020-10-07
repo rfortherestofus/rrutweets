@@ -5,6 +5,24 @@ library(googlesheets4)
 library(rtweet)
 library(lubridate)
 
+
+# Airtable ----------------------------------------------------------------
+
+library(httr)
+library(jsonlite)
+library(airtabler)
+
+airtable_api_key <- Sys.getenv("AIRTABLE_API_KEY")
+
+temp <- airtable(base = "wsp5wOh2LZUytD97g",
+                 tables = "RRU Tweets") %>%
+  as_tibble()
+
+air_select("wsp5wOh2LZUytD97g", "RRU Tweets")
+
+temp <- fromJSON(str_glue("https://api.airtable.com/v0/appM1W2qEtMbiF2J1/RRU%20Content%20Tweets?maxRecords=3&view=Grid%20view?api_key={airtable_api_key}"))$fields %>%
+  as_tibble()
+
 # Authentication ----------------------------------------------------------
 
 if (rlang::is_interactive() == TRUE) {
