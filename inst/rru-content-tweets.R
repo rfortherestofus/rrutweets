@@ -11,4 +11,4 @@ library(rrutweets)
 authenticate_googlesheets()
 authenticate_twitter()
 
-rru_tweet("RRU Promotional Tweets")
+rru_tweet("RRU Content Tweets")
