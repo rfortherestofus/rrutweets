@@ -1,6 +1,6 @@
 on:
   schedule:
-    cron: "48 13 * * 1"
+    - cron: '50 13 * * 1'
 
 jobs:
   promotional-tweets:
