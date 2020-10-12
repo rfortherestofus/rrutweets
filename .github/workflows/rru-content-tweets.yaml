@@ -1,6 +1,7 @@
+name: Post content tweet
 on:
   schedule:
-    - cron: '50 13 * * 1'
+    - cron: '52 13 * * 1'
 
 jobs:
   promotional-tweets:
