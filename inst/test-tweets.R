@@ -15,3 +15,6 @@ authenticate_twitter()
 
 post_tweet(status = "Test",
            token = twitter_token)
+
+temp <- get_followers(user = "rfortherest",
+                      n = 10000)
