@@ -37,6 +37,7 @@ jobs:
           remotes::install_github("rfortherestofus/rrutweets")
           remotes::install_cran("rtweet")
           remotes::install_cran("jsonlite")
+          remotes::install_cran("janitor")
           remotes::install_github("tidyverse/googlesheets4")
         shell: Rscript {0}
 
