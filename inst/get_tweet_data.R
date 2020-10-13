@@ -1,11 +1,14 @@
-authenticate_twitter()
-authenticate_googlesheets()
-
 library(rtweet)
 library(tidyverse)
 library(janitor)
 library(lubridate)
 library(googlesheets4)
+library(rrutweets)
+
+authenticate_twitter()
+authenticate_googlesheets()
+
+
 
 
 new_tweets <- search_tweets(q = "rfortherest",
@@ -16,7 +19,10 @@ new_tweets <- search_tweets(q = "rfortherest",
   select(text, favorite_count, retweet_count) %>%
   set_names("tweet", "likes", "retweets")
 
-old_tweets <- read_csv("inst/twitter-export.csv") %>%
+
+
+old_tweets <- read_csv(system.file("twitter-export.csv",
+                                   package = "rrutweets")) %>%
   clean_names() %>%
   select(tweet_full_text,
          tweet_favorite_count,
