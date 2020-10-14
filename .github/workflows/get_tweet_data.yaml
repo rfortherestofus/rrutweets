@@ -1,6 +1,6 @@
 on:
-  schedule:
-    cron: '0 0 * * *''
+  push:
+    branches: master
 
 jobs:
   promotional-tweets:
@@ -43,5 +43,4 @@ jobs:
 
       - name: Run script
         run: |-
-          Rscript inst/get_tweet_data.R
-
+          Rscript 'get_tweet_data()'
