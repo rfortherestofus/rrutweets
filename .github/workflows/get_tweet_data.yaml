@@ -41,6 +41,6 @@ jobs:
           remotes::install_github("tidyverse/googlesheets4")
         shell: Rscript {0}
 
-      - name: Run script
+      - name: Get tweet data
         run: |-
-          Rscript 'get_tweet_data()'
+          Rscript -e 'get_tweet_data()'
