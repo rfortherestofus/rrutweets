@@ -3,6 +3,7 @@
 export("%>%")
 export(authenticate_googlesheets)
 export(authenticate_twitter)
+export(get_tweet_data)
 export(pdf_to_gif)
 export(rru_tweet)
 export(tweet_thread)
