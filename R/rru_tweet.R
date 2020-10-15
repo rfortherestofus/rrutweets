@@ -62,7 +62,7 @@ rru_tweet <- function(sheet_name) {
   # Put Tweets Back on Google Sheet
 
   all_tweets %>%
-    select(tweet_text:retweets) %>%
+    select(tweet_text:date_posted) %>%
     write_sheet(rru_tweets_sheet,
                 sheet = sheet_name)
 
